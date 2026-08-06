@@ -1,0 +1,159 @@
+:root{
+
+--primary:#2E7D32;
+--secondary:#F9A826;
+--accent:#42A5F5;
+--background:#FFF8E7;
+--surface_cards:#FFFFFF;
+--text:#263238;
+--success:#07D352;
+--warning:#F94316;
+--dark-green: #1C4620;
+}
+
+body{
+    background-color:var(--background);
+    color:var(--text);
+    font-family:Arial, sans-serif;
+   
+    padding-left: 38px;
+    padding-right: 38px;
+}
+
+.image-container{
+    width: 326px;
+    height: 205px;
+    margin-top: 20px;
+    border-radius: 5px;
+    background-image:url('../assets/aDm5mK7VlwYKIEsilQw8-Et3BF-adjusted.jpg');
+    background-size:cover;
+    background-position:center;
+    
+}
+
+.h2-content{
+    margin-top: 30px;
+    color:var(--text);
+    font-size: 40px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.available-trade{
+    
+    display: flex;
+    width: 335px;
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+}
+
+.available-trade__title{
+    margin-top: 49px;
+    display: flex;
+    width: 200px;
+    height: 18px;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--text);
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.available-trade__container{
+    display: flex;
+    width: 91px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding-top: 24px
+}
+
+.available-trade__item{
+    height: 91px;
+    width: 91px;
+    align-self: stretch;
+    border-radius: 91px;
+    background-size:cover;
+
+    /* drop shadow */
+    box-shadow: 0 8px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.available-trade__content{
+    display: flex;
+    height: 18px;
+    flex-direction: column;
+    justify-content: center;
+    align-self: stretch;
+
+    color: var(--text);
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.top-traders_title{
+    margin-top: 61px;
+    display: flex;
+    width: 200px;
+    height: 18px;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--text);
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.info-card{
+    width: 326px;
+    color: var(--text);
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.join-us-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    width: 143px;
+    padding: 16px;
+    gap: 8px;
+    color: var(--surface_cards);
+    border: none;
+    border-radius: 10px;
+    background: var(--primary);
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+    margin-bottom: 24px;
+  }
+
+
+
+.join-us-btn:hover {
+  opacity: 0.92;
+}
+
+.join-us-btn:active {
+  opacity: 0.8;
+}
+
+.join-us-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

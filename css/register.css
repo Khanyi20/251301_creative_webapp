@@ -1,0 +1,31 @@
+
+.r-pw-right {
+  width: 60px;
+  height: 60px;
+  top: 425px;
+  right: -30px;
+}
+
+.r-lower-left {
+  width: 65px;
+  height: 65px;
+  top: 645px;
+  left: -35px;
+}
+
+.r-bottom-right {
+  width: 130px;
+  height: 130px;
+  bottom: -45px;
+  right: -25px;
+}
+
+.links-row-inline {
+  align-items: flex-start;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.links-row-inline .muted-text {
+  text-align: left;
+}

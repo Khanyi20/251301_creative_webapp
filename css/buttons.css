@@ -1,0 +1,50 @@
+:root{
+
+--primary:#2E7D32;
+--secondary:#F9A826;
+--accent:#42A5F5;
+--background:#FFF8E7;
+--surface_cards:#FFFFFF;
+--text:#263238;
+--success:#07D352;
+--warning:#F94316;
+}
+
+.info-card__extra {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .info-card__extra.open {
+    max-height: 500px; /* big enough to fit the content */
+    margin-top: 8px;
+  }
+
+  .info-card__toggle-btn {
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-end;  
+    margin-right: 0;
+    margin-left:auto;  
+    gap: 6px;
+  }
+
+  .info-card__toggle-btn i {
+    transition: transform 0.3s ease;
+  }
+
+  .info-card__toggle-btn.open i {
+    transform: rotate(-180deg); /* flips chevron when open */
+  }
+
+
+ 

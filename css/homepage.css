@@ -1,0 +1,43 @@
+:root{
+
+--primary:#2E7D32;
+--secondary:#F9A826;
+--accent:#42A5F5;
+--background:#FFF8E7;
+--surface_cards:#FFFFFF;
+--text:#263238;
+--success:#07D352;
+--warning:#F94316;
+--dark-green: #1C4620;
+}
+
+body{
+    background-color:var(--background);
+    color:var(--text);
+    font-family:Arial, sans-serif;
+   
+    padding-left: 38px;
+    padding-right: 38px;
+}
+
+
+.image-container-home{
+    width: 326px;
+    height: 190px;
+    margin-top: 20px;
+    border-radius: 5px;
+    background-image:url('../assets/chess-board.jpg');
+    background-size:cover;
+    background-position:center;
+    
+}
+
+.h2-content{
+    color: var(--text);
+    font-family: Inter;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding-top: 8px;
+}
