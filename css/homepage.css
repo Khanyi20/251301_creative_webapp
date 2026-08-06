@@ -41,3 +41,14 @@ body{
     line-height: normal;
     padding-top: 8px;
 }
+
+.home-content{
+    width: 317px;
+    color: var(--text);
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding-top: 14px;
+}

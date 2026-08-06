@@ -16,7 +16,10 @@
     ?>
 
     <div class="info-card">
-        
+        <?php echo '<div class="home-content">
+        Keep Trading to become No. 1 on the leader board.
+        </div>'
+        ?>
     </div>
 
         
