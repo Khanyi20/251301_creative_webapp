@@ -17,20 +17,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
     
     // look up user by username/email using PDO
-    $stmt = $conn->prepare("SELECT user_id, username, password, profile_img FROM users WHERE username = :identifier OR email = :identifier");
+    $stmt = $conn->prepare(
+        "SELECT id, username, password 
+        FROM users 
+        WHERE username = :identifier OR email = :identifier");
     $stmt->execute([':identifier' => $identifier]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     
     if ($user) {
         // verify password
-        if (password_verify($password, $user['password'])) {
-            // password matches - log them in
-            $_SESSION['user_id'] = $user['user_id'];
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['profile_img'] = $user['profile_img'];
-            header("Location: home_page.php");
-            exit();
-        } else {
+        if ($user && password_verify($password, $user['password'])) {
+
+        session_regenerate_id(true);
+
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
+
+        header("Location: home_page.php");
+        exit();
+
+    } else {
             $error = "Invalid username or password";
         }
     } else {
@@ -76,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form method="POST" action="">
             <div class="form-group">
                 <label>Username or Email *</label>
-                <input type="text" name="username" required value=" <?php echo htmlspecialchars($_POST['username'] ?? '') ?>">
+                <input type="text" name="username" required value="<?php echo htmlspecialchars($_POST['username'] ?? '') ?>">
             </div>
             <div class="form-group">
                 <label>Password *</label>

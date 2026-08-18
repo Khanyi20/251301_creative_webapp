@@ -1,31 +1,42 @@
-<?php   
+<?php
+
 session_start();
+
 require __DIR__ . '/../database/db.php';
 
-    // check if user is logged in
+// Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: login_page.php");
     exit();
 }
 
-    // get user data using PDO
-    $stmt = $conn->prepare("SELECT * FROM users WHERE user_id = :id");
-    $stmt->execute([':id' => $_SESSION['user_id']]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+// Get the logged-in user's data
+$stmt = $conn->prepare(
+    "SELECT id, username, email, password, created_at
+     FROM users
+     WHERE id = :id"
+);
 
-    if (!$user) {
-        // user not found, force logout
-        session_destroy();
-        header("Location: login_page.php");
-        exit();
-    }
+$stmt->execute([
+    ':id' => $_SESSION['user_id']
+]);
 
-    // handle logout
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// If the user doesn't exist, log them out
+if (!$user) {
+    session_destroy();
+    header("Location: login_page.php");
+    exit();
+}
+
+// Handle logout
 if (isset($_GET['logout'])) {
     session_destroy();
     header("Location: login_page.php");
     exit();
 }
+
 ?>
 
 <!DOCTYPE html>
