@@ -21,36 +21,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (strlen($password) < 6) $errors[] = "Password must be at least 6 characters";
     if ($password !== $confirm) $errors[] = "Passwords do not match";
 
-    // handle profile image upload
-
-    $profile_img = 'default.jpg';
-    if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] == 0) {
-        $allowed = ['jpg', 'jpeg', 'png', 'gif'];
-        $ext = strtolower(pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION));
-
-        if (in_array($ext, $allowed)) {
-            $new_name = uniqid() . '.' . $ext;
-            $target = 'uploads/' . $new_name;
-
-            if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $target)) {
-                $profile_img = $new_name;
-            }
-        } else {
-            $errors[] = "Only JPG, PNG, and GIF files are allowed";
-        }
-    }
+    
 
     // If no errors, save to database
     if (empty($errors)) {
         $hashed = password_hash($password, PASSWORD_DEFAULT);
 
         try {
-            $stmt = $conn->prepare("INSERT INTO users (username, email, password, profile_img) VALUES (:username, :email, :password, :profile_img)");
+            $stmt = $conn->prepare(
+                "INSERT INTO users (username, email, password) 
+                VALUES (:username, :email, :password)");
             $stmt->execute([
                 ':username' => $username,
                 ':email' => $email,
-                ':password' => $hashed,
-                ':profile_img' => $profile_img
+                ':password' => $hashed
             ]);
 
             $_SESSION['success'] = "Registration successful! Please log in.";
@@ -171,14 +155,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         <?php endif; ?>
 
-        <form method="POST" action="" enctype="multipart/form-data">
+        <form method="POST" action="">
             <div class="form-group">
                 <label>Username *</label>
-                <input type="text" name="username" required value=" <?php echo htmlspecialchars($_POST['username'] ?? '') ?>">
+                <input type="text" name="username" required value="<?php echo htmlspecialchars($_POST['username'] ?? '') ?>">
             </div>
             <div class="form-group">
                 <label>Email *</label>
-                <input type="email" name="email" required value=" <?php echo htmlspecialchars($_POST['email'] ?? '') ?>">
+                <input type="email" name="email" required value="<?php echo htmlspecialchars($_POST['email'] ?? '') ?>">
             </div>
             <div class="form-group">
                 <label>Password (min 6 characters) *</label>
@@ -188,10 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label>Confirm Password *</label>
                 <input type="password" name="confirm_password" required>
             </div>
-            <div class="form-group">
-                <label>Profile Picture (JPG, PNG, GIF) </label>
-                <input type="file" name="profile_image" accept="image/*">
-            </div>
+            
             <button type="submit" class="btn">Create Account </button>
         </form>
 
