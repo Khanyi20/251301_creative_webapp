@@ -1,22 +1,14 @@
 <?php
-//Database configuration
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'creative_app');
+$host = "localhost";
+$dbname = "creative_app";
+$dbuser = "root";
+$dbpass = "";
 
-//Connect to mySQL
 
-$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-
-//Check Connection
-
-if($conn->connect_error) {
-    die("Connection failed:" .$conn->connect_error);
-
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4",$dbuser,$dbpass);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}catch(PDOException $e) {
+    die("Connection Failed: " . $e->getMessage());
 }
-
-//start session for login tracking
-
-session_start();
 ?>

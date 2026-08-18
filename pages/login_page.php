@@ -1,112 +1,94 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../trade_or_drop/css/login.css">
+<?php 
+session_start();
+require __DIR__ . '/../database/db.php';
 
-    <title>Login</title>
-</head>
-<body>
-    <!-- <?php
-    echo '<div class="login-container">';
-    echo '<h2>Login</h2>';
-    echo '<p>Don’t miss out on the best trades. Join and lets get trading.<br/>
-    Please enter your username and password to log in.</p>';
+$error = "";
+$identifier = "";
 
-    echo '<form action="../actions/login_action.php" method="post">';
-    echo '<label class="form-username" for="username">Username:</label>';
-    echo '<input type="text" id="username" name="username" required><br/>';
-    echo '<label class="form-password" for="password">Password:</label><br/>';
-    echo '<input type="password" id="password" name="password" required><br/>';
-    echo '<button type="submit">Login</button>';
-    echo '</form>';
-    echo '</div>';
-    ?> -->
-<!--</body>
-</html> -->
+// if already logged in, go to dashboard
+if (isset($_SESSION['user_id'])) {
+    header("Location: home_page.php");
+    exit();
+}
 
-
-
+    // handle login form
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $identifier = trim($_POST['username']);
+    $password = $_POST['password'];
+    
+    // look up user by username/email using PDO
+    $stmt = $conn->prepare("SELECT user_id, username, password, profile_img FROM users WHERE username = :identifier OR email = :identifier");
+    $stmt->execute([':identifier' => $identifier]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if ($user) {
+        // verify password
+        if (password_verify($password, $user['password'])) {
+            // password matches - log them in
+            $_SESSION['user_id'] = $user['user_id'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['profile_img'] = $user['profile_img'];
+            header("Location: home_page.php");
+            exit();
+        } else {
+            $error = "Invalid username or password";
+        }
+    } else {
+        $error = "Invalid username or password";
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Log In</title>
-  <link rel="stylesheet" href="../css/login.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+    <style>
+        body { font-family: Arial; background: #eef8f9; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .form-box { background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 350px; }
+        .form-box h2 { color: #0b3d5c; text-align: center; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #40616f; }
+        .form-group input { width: 100%; padding: 10px; border: 1px solid #cfe6e9; border-radius: 8px; font-size: 14px; box-sizing: border-box; }
+        .btn { width: 100%; padding: 12px; background: #f2661f; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; }
+        .btn:hover { background: #d4550a; }
+        .error { color: #e0495b; font-size: 14px; margin: 10px 0; }
+        .success { color: #2ca6a4; font-size: 14px; margin: 10px 0; }
+        .link { text-align: center; margin-top: 15px; }
+        .link a { color: #12678a; }
+    </style>
 </head>
 <body>
-
-  <div class="phone">
-
-    <!-- decorative background circles -->
-    <span class="circle c-orange c-top-left"></span>
-    <span class="circle c-yellow c-top-mid"></span>
-    <span class="circle c-blue c-top-right"></span>
-    <span class="circle c-green c-mid-left"></span>
-    <span class="circle c-gray c-mid-right"></span>
-    <span class="circle c-orange c-lower-right"></span>
-    <span class="circle c-blue c-bottom-left"></span>
-    <span class="circle c-yellow c-bottom-left2"></span>
-    <span class="circle c-gray c-bottom-mid"></span>
-    <span class="circle c-green c-bottom-right"></span>
-
-    <div class="content">
-
-      <button type="button" class="back-btn" id="backBtn">
-        <span class="chevron">&lsaquo;</span> Back
-      </button>
-
-      <header class="intro">
-        <h1>Log In</h1>
-        <p>Don't miss out on the best trades. Join and lets get trading.</p>
-      </header>
-
-      <form id="loginForm" class="login-form" action="#" method="POST" novalidate>
-
-        <div class="field">
-          <label for="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            placeholder="Your Username"
-            autocomplete="username"
-            required
-          >
+    
+    <div class="form-box">
+        <h2>Welcome Back</h2>
+        
+        <?php if (isset($_SESSION['success'])): ?>
+            <div class="success"> <?php echo htmlspecialchars($_SESSION['success']); unset($_SESSION['success']); ?></div>
+        <?php endif; ?>
+        
+        <?php if (!empty($error)): ?>
+            <div class="error"> <?php echo htmlspecialchars($error); ?></div>
+        <?php endif; ?>
+        
+        <form method="POST" action="">
+            <div class="form-group">
+                <label>Username or Email *</label>
+                <input type="text" name="username" required value=" <?php echo htmlspecialchars($_POST['username'] ?? '') ?>">
+            </div>
+            <div class="form-group">
+                <label>Password *</label>
+                <input type="password" name="password" required>
+            </div>
+            <button type="submit" class="btn">Log In </button>
+        </form>
+        
+        <div class="link">
+            Don't have an account? <a href="register_page.php">Create an account</a>
         </div>
-
-        <div class="field">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Your password"
-            autocomplete="current-password"
-            required
-          >
-        </div>
-
-        <p class="error-msg" id="errorMsg" aria-live="polite"></p>
-
-        <div class="links-row">
-          <span class="muted-text">
-            If you don't have an account with us
-            <a href="register.php" class="link">Register</a>
-          </span>
-          <a href="forgot-password.php" class="link forgot-link">Forgot password</a>
-        </div>
-
-        <button type="submit" class="submit-btn" id="submitBtn">Log In</button>
-
-      </form>
-
     </div>
-  </div>
 
-  <script src="../js/login.js"></script>
 </body>
 </html>
