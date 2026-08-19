@@ -85,6 +85,9 @@ if (!isset($_SESSION['user_id'])) {
                     <img src="<?php echo htmlspecialchars($item['image_path']); ?>" alt="<?php echo htmlspecialchars($item['item_name']); ?>" style="max-width: 200px;">
                 <?php endif; ?> -->
             </div>
+            <a href="item_details.php?id=<?php echo $item['id']; ?>">
+                View Item
+            </a>
         <?php endforeach; ?>
     </div>
 
