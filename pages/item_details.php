@@ -127,9 +127,19 @@ if (!$item) {
 
         <?php else: ?>
 
-            <button type="button">
-                Request Trade
-            </button>
+            <form method="POST" action="request_trade.php">
+
+                <input
+                    type="hidden"
+                    name="item_id"
+                    value="<?php echo $item['id']; ?>"
+                >
+
+                <button type="submit">
+                    Request Trade
+                </button>
+
+            </form>
 
         <?php endif; ?>
 
