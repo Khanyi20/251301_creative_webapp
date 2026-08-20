@@ -60,6 +60,16 @@ if (!isset($_SESSION['user_id'])) {
     <div class="items-container">
         <?php foreach ($items as $item): ?>
             <div class="item-card">
+
+                <?php if (!empty($item['image_path'])): ?>
+
+                    <img
+                        src="../<?php echo htmlspecialchars($item['image_path']); ?>"
+                        alt="<?php echo htmlspecialchars($item['item_name']); ?>"
+                        width="200"
+                    >
+
+                <?php endif; ?>
                 <h2><?php echo htmlspecialchars($item['item_name']); ?></h2>
                 <p>
                     <strong>Description:</strong> 

@@ -64,6 +64,17 @@ if (!$item) {
 
     <main>
 
+
+        <?php if (!empty($item['image_path'])): ?>
+
+            <img
+                src="../<?php echo htmlspecialchars($item['image_path']); ?>"
+                alt="<?php echo htmlspecialchars($item['item_name']); ?>"
+                width="400"
+            >
+
+        <?php endif; ?>
+
         <h1><?php echo htmlspecialchars($item['item_name']); ?></h1>
 
         <p>
@@ -100,12 +111,26 @@ if (!$item) {
             <?php echo htmlspecialchars($item['created_at']); ?>
         </p>
 
-        <?php if ($item['user_id'] != $_SESSION['user_id']): ?>
-        
-            <button type="button" onclick="alert('Trade request sent!');">
+        <?php if ($item['user_id'] == $_SESSION['user_id']): ?>
+
+        <form method="POST" action="delete_item.php">
+            <input
+                type="hidden"
+                name="item_id"
+                value="<?php echo $item['id']; ?>"
+            >
+
+            <button type="submit">
+                Delete Item
+            </button>
+        </form>
+
+        <?php else: ?>
+
+            <button type="button">
                 Request Trade
             </button>
-            
+
         <?php endif; ?>
 
     </main>
