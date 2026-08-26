@@ -32,6 +32,26 @@ $stmt->execute([':user_id' => $user_id]);
 
 $incoming_requests = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+// Get trade requests made by the logged-in user
+$stmt = $conn->prepare(
+    "SELECT
+        trade_requests.id AS request_id,
+        trade_requests.status,
+        trade_requests.created_at,
+        items.id AS item_id,
+        items.item_name,
+        items.image_path,
+        users.username AS owner_username
+     FROM trade_requests
+     INNER JOIN items ON trade_requests.item_id = items.id
+        INNER JOIN users ON items.user_id = users.id
+     WHERE trade_requests.requester_id = :user_id
+     ORDER BY trade_requests.created_at DESC"
+);
+$stmt->execute([':user_id' => $user_id]);
+
+$outgoing_requests = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -75,18 +95,59 @@ $incoming_requests = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <?php echo htmlspecialchars($request['created_at']); ?>
                         </p>
 
-                        <button type= "button">
-                            Accept
-                        </button>
+                        <form action="accept_trade.php" method="POST">
+                            <input type="hidden" name="request_id" value="<?php echo $request['request_id']; ?>">
+                            <button type="submit">
+                                Accept
+                            </button>
+                        </form>
 
-                        <button type= "button">
-                            Reject
-                        </button>
+                        <form action="reject_trade.php" method="POST">
+                            <input type="hidden" name="request_id" value="<?php echo $request['request_id']; ?>">
+                            <button type="submit">
+                                Reject
+                            </button>
+                        </form>
                     </article>
 
                         </hr>
                 <?php endforeach; ?>
         <?php endif; ?>
+
+        <section>
+            <h2>My Outgoing Requests</h2>
+
+            <?php if (empty($outgoing_requests)): ?>
+                <p>No outgoing trade requests.</p>
+            <?php else: ?>
+                <?php foreach ($outgoing_requests as $request): ?>
+                    <article>
+                        <?php if (!empty($request['image_path'])): ?>
+                            <img
+                                src="../<?php echo htmlspecialchars($request['image_path']); ?>"
+                                alt="<?php echo htmlspecialchars($request['item_name']); ?>"
+                                width="200"
+                            >
+                        <?php endif; ?>
+                        <h3><?php echo htmlspecialchars($request['item_name']); ?></h3>
+                        <p>
+                            <strong>Owner:</strong> 
+                            <?php echo htmlspecialchars($request['owner_username']); ?>
+                        </p>
+                        <p>
+                            <strong>Status:</strong> 
+                            <?php echo htmlspecialchars($request['status']); ?>
+                        </p>
+                        <p>
+                            <strong>Requested on:</strong> 
+                            <?php echo htmlspecialchars($request['created_at']); ?>
+                        </p>
+                    </article>
+
+                    </hr>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </section>
 
     </main>
     
