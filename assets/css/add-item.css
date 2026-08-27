@@ -18,6 +18,7 @@
 
 .item-form {
     background: var(--primary);
+    opacity: 58%;
     padding: 32px;
     border-radius: 16px;
     border: 1px solid var(--text);

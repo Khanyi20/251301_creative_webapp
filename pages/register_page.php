@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/auth.css"
+    <link rel="stylesheet" href="../assets/css/auth.css">
     <title>User Register</title>
     <!-- <style>
         body {
@@ -146,12 +146,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <main class="auth-page"></main>
+    <main class="auth-page">
 
-    <div class="auth-card">
-        <div class="auth-heading"></div>
+    <div class="form-box">
+        <div class="auth-heading">
         <h2>Register</h2>
         </div>
+        
 
 
         <?php if (!empty($errors)): ?>

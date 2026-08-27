@@ -56,7 +56,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <main class="auth-page">
-    <div class="auth-card">
+        
+        <div class="top-heading">
+        <h1> Login</h1>
+        <p>Don't miss out on the best trades. Join and lets get trading.</p>
+        </div>
+    <div class="form-box">
 
         <div class="auth-heading">
         <h2>Welcome Back</h2>
@@ -80,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <label>Password *</label>
                 <input type="password" name="password" required>
             </div>
-            <button type="submit" class="button button-primary">Log In </button>
+            <button type="submit" class="btn">Log In </button>
         </form>
         
         <div class="auth-footer">

@@ -28,6 +28,7 @@ body {
     color: var(--text);
 }
 
+
 a {
     text-decoration: none;
     color: inherit;
@@ -50,13 +51,15 @@ main {
 
 .site-header {
     width: 100%;
-    background: var(--background);
-    border-bottom: 1px solid var(--surface_cards);
+    background: var(--dark-green);
+    opacity: 95%;
+    color: var(--background);
+    
 }
 
 .main-nav {
     width: min(1200px 92%);
-    min-height: 27px;
+    min-height: 45px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -73,10 +76,12 @@ main {
     display: flex;
     align-items: center;
     gap: 24px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 .nav-links a {
-    font-size: 0.95rem;
+    font-size: 1.2rem;
 }
 
 .nav-links a:hover {
@@ -153,8 +158,8 @@ button {
 }
 
 .button-secondary {
-    background: var(--text);
-    color: var(--surface_cards);
+    background: var(--primary);
+    color: var(--background);
 }
 
 .button-secondary:hover {
@@ -233,7 +238,7 @@ button {
 /* primary button*/
 
 .button-primary {
-    background: var(--text);
+    background: var(--primary);
     color: var(--background);
 }
 
