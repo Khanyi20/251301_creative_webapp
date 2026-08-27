@@ -50,99 +50,105 @@ if (!$item) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/item-details.css">
     <title>
-        
         <?php echo htmlspecialchars($item['item_name']); ?>
-
     </title>
 </head>
 <body>
+
+<?php require __DIR__ . '/../includes/header.php'; ?>
 
     <p>
         <a href="marketplace.php">Back to Marketplace</a>
     </p>
 
     <main>
+        <div class="item-details">
 
+            <div class="item-details-image">
+                <?php if (!empty($item['image_path'])): ?>
 
-        <?php if (!empty($item['image_path'])): ?>
+                    <img
+                        src="../<?php echo htmlspecialchars($item['image_path']); ?>"
+                        alt="<?php echo htmlspecialchars($item['item_name']); ?>"
+                        width="400"
+                    >
 
-            <img
-                src="../<?php echo htmlspecialchars($item['image_path']); ?>"
-                alt="<?php echo htmlspecialchars($item['item_name']); ?>"
-                width="400"
-            >
-
-        <?php endif; ?>
-
-        <h1><?php echo htmlspecialchars($item['item_name']); ?></h1>
-
-        <p>
-            <strong>Posted by:</strong> 
-            <?php echo htmlspecialchars($item['username']); ?>
-        </p>
-
-        <p>
-            <strong>Category:</strong> 
-            <?php echo htmlspecialchars($item['category']); ?>
-        </p>
-
-        <p>
-            <strong>Condition:</strong> 
-            <?php echo htmlspecialchars($item['item_condition']); ?>
-        </p>
-
-        <p>
-            <strong>Description:</strong> 
+                <?php endif; ?>
+            </div>
             
-        </p>
+            <div class="item-details-content">
 
-        <p>
-            <?php echo nl2br(htmlspecialchars($item['description'])); ?>
-        </p>
+                <h1><?php echo htmlspecialchars($item['item_name']); ?></h1>
 
-        <p>
-            <strong>Status:</strong> 
-            <?php echo htmlspecialchars($item['status']); ?>
-        </p>
+                <p>
+                    <strong>Posted by:</strong> 
+                    <?php echo htmlspecialchars($item['username']); ?>
+                </p>
 
-        <p>
-            <strong>Listed:</strong> 
-            <?php echo htmlspecialchars($item['created_at']); ?>
-        </p>
+                <p>
+                    <strong>Category:</strong> 
+                    <?php echo htmlspecialchars($item['category']); ?>
+                </p>
 
-        <?php if ($item['user_id'] == $_SESSION['user_id']): ?>
+                <p>
+                    <strong>Condition:</strong> 
+                    <?php echo htmlspecialchars($item['item_condition']); ?>
+                </p>
 
-        <form method="POST" action="delete_item.php">
-            <input
-                type="hidden"
-                name="item_id"
-                value="<?php echo $item['id']; ?>"
-            >
+                <p>
+                    <strong>Description:</strong> 
+                    
+                </p>
 
-            <button type="submit">
-                Delete Item
-            </button>
-        </form>
+                <p>
+                    <?php echo nl2br(htmlspecialchars($item['description'])); ?>
+                </p>
 
-        <?php else: ?>
+                <p>
+                    <strong>Status:</strong> 
+                    <?php echo htmlspecialchars($item['status']); ?>
+                </p>
 
-            <form method="POST" action="request_trade.php">
+                <p>
+                    <strong>Listed:</strong> 
+                    <?php echo htmlspecialchars($item['created_at']); ?>
+                </p>
 
-                <input
-                    type="hidden"
-                    name="item_id"
-                    value="<?php echo $item['id']; ?>"
-                >
+                <?php if ($item['user_id'] == $_SESSION['user_id']): ?>
 
-                <button type="submit">
-                    Request Trade
-                </button>
+                <form method="POST" action="delete_item.php">
+                    <input
+                        type="hidden"
+                        name="item_id"
+                        value="<?php echo $item['id']; ?>"
+                    >
 
-            </form>
+                    <button type="submit">
+                        Delete Item
+                    </button>
+                </form>
 
-        <?php endif; ?>
+                <?php else: ?>
 
+                    <form method="POST" action="request_trade.php">
+
+                        <input
+                            type="hidden"
+                            name="item_id"
+                            value="<?php echo $item['id']; ?>"
+                        >
+
+                        <button type="submit">
+                            Request Trade
+                        </button>
+
+                    </form>
+
+                <?php endif; ?>
+            </div>
+        </div>
     </main>
     
 </body>

@@ -102,46 +102,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/add-item.css">
     <title>List new item</title>
 </head>
-<body></body>
-    <h1>List a New Item</h1>
+<body>
+    <?php require __DIR__ . '/../includes/header.php'; ?>
+    <main>
+        <div class="form-page"></div>
 
-    <?php if (!empty($errors)): ?>
-        <div class="error-messages">
-            <ul>
-                <?php foreach ($errors as $error): ?>
-                    <li><?php echo htmlspecialchars($error); ?></li>
-                <?php endforeach; ?>
-            </ul>
+        <div class="page-heading">
+            <div>
+                <h1>List a New Item</h1>
+                <p>List something you would like to trade with another student</p>
+            </div>
         </div>
-    <?php endif; ?>
+            <?php if (!empty($errors)): ?>
+                <div class="error-messages">
+                    <ul>
+                        <?php foreach ($errors as $error): ?>
+                            <li><?php echo htmlspecialchars($error); ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
 
-    <form method="POST" action="" enctype="multipart/form-data">
-        <div>
-            <label for="item_name">Item Name</label>
-            <input type="text" id="item_name" name="item_name" required value="<?php echo htmlspecialchars($item_name); ?>">
-        </div>
-        <div>
-            <label for="description">Description</label>
-            <textarea id="description" name="description" required><?php echo htmlspecialchars($description); ?></textarea>
-        </div>
-        <div>
-            <label for="category">Category</label>
-            <input type="text" id="category" name="category" required value="<?php echo htmlspecialchars($category); ?>">
-        </div>
-        <div>
-            <label for="item_condition">Item Condition</label>
-            <input type="text" id="item_condition" name="item_condition" required value="<?php echo htmlspecialchars($item_condition); ?>">
-        </div>
-        <div>
-            <label for="item_image">Upload Image</label>
-            <input type="file" id="item_image" name="item_image" accept=".jpg,.jpeg,.png,.gif,.webp">
-        </div>
-        <button type="submit">Add Item</button>
-    </form>
+            <form method="POST" action="" enctype="multipart/form-data" class="item-form">
+                <div class="form-group">
+                    <label for="item_name">Item Name</label>
+                    <input type="text" id="item_name" name="item_name" required value="<?php echo htmlspecialchars($item_name); ?>">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" rows="5" required><?php echo htmlspecialchars($description); ?></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select name="category" id="category" /*required*/> 
+                        <input type="text" id="category" name="category" required value="<?php echo htmlspecialchars($category); ?>">
+                    </select>
+                    </div>
+                <div class="form-group">
+                    <label for="item_condition">Item Condition</label>
+                    <input type="text" id="item_condition" name="item_condition" required value="<?php echo htmlspecialchars($item_condition); ?>">
+                </div>
+                <div class="form-group">
+                    <label for="image">Upload Image</label>
+                    <input type="file" id="image" name="image" accept=".jpg,.jpeg,.png,.gif,.webp">
+                </div>
+                <button type="submit" class="button button-primary">Add Item</button>
+            </form>
 
-    </p><a href="home_page.php">Back to Home</a></p>
-    
+            </p><a href="home_page.php">Back to Home</a></p>
+    </div>
+    </main>
 </body>
 </html>

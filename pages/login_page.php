@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     
     if ($user) {
-        // verify password
+        // verify password  
         if ($user && password_verify($password, $user['password'])) {
 
         session_regenerate_id(true);
@@ -50,33 +50,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/auth.css">
     <title>User Login</title>
-    <style>
-        body { font-family: Arial; background: #eef8f9; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        .form-box { background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 350px; }
-        .form-box h2 { color: #0b3d5c; text-align: center; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #40616f; }
-        .form-group input { width: 100%; padding: 10px; border: 1px solid #cfe6e9; border-radius: 8px; font-size: 14px; box-sizing: border-box; }
-        .btn { width: 100%; padding: 12px; background: #f2661f; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; }
-        .btn:hover { background: #d4550a; }
-        .error { color: #e0495b; font-size: 14px; margin: 10px 0; }
-        .success { color: #2ca6a4; font-size: 14px; margin: 10px 0; }
-        .link { text-align: center; margin-top: 15px; }
-        .link a { color: #12678a; }
-    </style>
+    
 </head>
 <body>
-    
-    <div class="form-box">
+    <main class="auth-page">
+    <div class="auth-card">
+
+        <div class="auth-heading">
         <h2>Welcome Back</h2>
-        
+        </div>
+
+
         <?php if (isset($_SESSION['success'])): ?>
-            <div class="success"> <?php echo htmlspecialchars($_SESSION['success']); unset($_SESSION['success']); ?></div>
+            <div class="message message-success"> <?php echo htmlspecialchars($_SESSION['success']); unset($_SESSION['success']); ?></div>
         <?php endif; ?>
         
         <?php if (!empty($error)): ?>
-            <div class="error"> <?php echo htmlspecialchars($error); ?></div>
+            <div class="message message-error"> <?php echo htmlspecialchars($error); ?></div>
         <?php endif; ?>
         
         <form method="POST" action="">
@@ -88,13 +80,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <label>Password *</label>
                 <input type="password" name="password" required>
             </div>
-            <button type="submit" class="btn">Log In </button>
+            <button type="submit" class="button button-primary">Log In </button>
         </form>
         
-        <div class="link">
+        <div class="auth-footer">
             Don't have an account? <a href="register_page.php">Create an account</a>
         </div>
     </div>
-
+    </main>
 </body>
 </html>

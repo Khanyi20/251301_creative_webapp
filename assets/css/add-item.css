@@ -1,0 +1,72 @@
+:root{
+
+--primary:#2E7D32;
+--secondary:#F9A826;
+--accent:#42A5F5;
+--background:#FFF8E7;
+--surface_cards:#FFFFFF;
+--text:#263238;
+--success:#07D352;
+--warning:#F94316;
+--dark-green: #1C4620;
+}
+
+.form-page {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.item-form {
+    background: var(--primary);
+    padding: 32px;
+    border-radius: 16px;
+    border: 1px solid var(--text);
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--background);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--surface_cards);
+    border-radius: 8px;
+    background: var(--background);
+    color: var(--text);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: 2px solid var(--text);
+    outline-offset: 1px;
+} 
+
+.item-form .button {
+    width: 100%;
+    background: var(--dark-green);
+    color: var(--background);
+}
+
+@media (max-width: 600px) {
+
+    .item-form {
+        padding: 20px;
+    }
+
+}

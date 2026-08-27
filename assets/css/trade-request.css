@@ -1,0 +1,117 @@
+:root{
+
+--primary:#2E7D32;
+--secondary:#F9A826;
+--accent:#42A5F5;
+--background:#FFF8E7;
+--surface_cards:#FFFFFF;
+--text:#263238;
+--success:#07D352;
+--warning:#F94316;
+--dark-green: #1C4620;
+}
+
+.requests-section {
+    margin-bottom: 48px;
+}
+
+.requests-section h2 {
+    margin-bottom: 20px;
+}
+
+.requests-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.request-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 20px;
+    background: var(--surface_cards);
+    border: 1px solid var(--background);
+    border-radius: 12px;
+}
+
+.request-info h3 {
+    margin: 0 0 8px;
+}
+
+.request-info p {
+    margin: 0 0 12px;
+    color: #666;
+}
+
+.request-status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+/* Statuses */
+
+.request-status.pending {
+    background: #fff3cd;
+    color: var(--secondary);
+}
+
+.request-status.accepted {
+    background: #d1e7dd;
+    color: var(--success);
+}
+
+.request-status.rejected {
+    background: #f8d7da;
+    color: var(--warning);
+}
+
+
+/* Buttons */
+
+.request-actions {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.request-actions .button {
+    white-space: nowrap;
+}
+
+
+/* Empty requests */
+.empty-requests {
+    padding: 32px;
+    text-align: center;
+    background: var(--surface_cards);
+    border: 1px solid var(--background);
+    border-radius: 12px;
+    color: #666;
+}
+
+
+/* mobile */
+
+@media (max-width: 600px) {
+
+    .request-card {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .request-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .request-actions .button {
+        width: 100%;
+        text-align: center;
+    }
+
+}

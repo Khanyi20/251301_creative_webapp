@@ -59,21 +59,32 @@ $outgoing_requests = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/trade-request.css">
     <title>Trade Requests</title>
 </head>
 <body>
-
+<?php require __DIR__ . '/../includes/header.php'; ?>
     <main>
 
-        <h1>Trade Requests</h1>
+        <div class="page-heading">
+            <div>
+                <h1>Trade Requests</h1>
+                
+            </div>
+            
+        </div>
+        
+
+        <section class="requests-section">
         <h2>Incoming Requests</h2>
 
+        <div class="requests-lists">
         <?php if (empty($incoming_requests)): ?>
             <p>No incoming trade requests.</p>
 
             <?php else: ?>
                 <?php foreach ($incoming_requests as $request): ?>
-                    <article>
+                    <article class="request-card">
                         <?php if (!empty($request['image_path'])): ?>
                             <img
                                 src="../<?php echo htmlspecialchars($request['image_path']); ?>"
@@ -81,20 +92,27 @@ $outgoing_requests = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 width="200"
                             >
                         <?php endif; ?>
+
+                        <div class="request-info">
                         <h3><?php echo htmlspecialchars($request['item_name']); ?></h3>
                         <p>
                             <strong>Requested by::</strong> 
                             <?php echo htmlspecialchars($request['requester_username']); ?>
                         </p>
                         <p>
+                            <span class="request-status <?php echo strtolower($request['status']); ?>">
                             <strong>Status:</strong> 
                             <?php echo htmlspecialchars($request['status']); ?>
+                            </span>
                         </p>
                         <p>
                             <strong>Requested on:</strong> 
                             <?php echo htmlspecialchars($request['created_at']); ?>
                         </p>
+                        </div>
 
+
+                    <div class="request-actions">
                         <form action="accept_trade.php" method="POST">
                             <input type="hidden" name="request_id" value="<?php echo $request['request_id']; ?>">
                             <button type="submit">
@@ -108,15 +126,20 @@ $outgoing_requests = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 Reject
                             </button>
                         </form>
+                    </div>
                     </article>
 
                         </hr>
                 <?php endforeach; ?>
         <?php endif; ?>
+        </div>
 
-        <section>
+        </section>
+
+        <section class="requests-section">
             <h2>My Outgoing Requests</h2>
 
+            <div class="requests-list">
             <?php if (empty($outgoing_requests)): ?>
                 <p>No outgoing trade requests.</p>
             <?php else: ?>
@@ -147,6 +170,8 @@ $outgoing_requests = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </hr>
                 <?php endforeach; ?>
             <?php endif; ?>
+            </div>
+
         </section>
 
     </main>

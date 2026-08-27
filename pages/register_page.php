@@ -57,8 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/auth.css"
     <title>User Register</title>
-    <style>
+    <!-- <style>
         body {
             font-family: Arial;
             background: #eef8f9;
@@ -141,13 +142,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .link a {
             color: #12678a;
         }
-    </style>
+    </style> -->
 </head>
 
 <body>
+    <main class="auth-page"></main>
 
-    <div class="form-box">
+    <div class="auth-card">
+        <div class="auth-heading"></div>
         <h2>Register</h2>
+        </div>
+
 
         <?php if (!empty($errors)): ?>
             <div class="error">
@@ -155,7 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         <?php endif; ?>
 
-        <form method="POST" action="">
+        <form method="POST" action="" enctype="multipart/form-data">
             <div class="form-group">
                 <label>Username *</label>
                 <input type="text" name="username" required value="<?php echo htmlspecialchars($_POST['username'] ?? '') ?>">
@@ -176,11 +181,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit" class="btn">Create Account </button>
         </form>
 
-        <div class="link">
+        <div class="auth-footer">
             Already have an account? <a href="login_page.php">Log in</a>
         </div>
     </div>
-
+    </main>
 </body>
 
 </html>
