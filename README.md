@@ -1,17 +1,17 @@
 # 251301_creative_webapp
 
-##Video link
+## Video link
 https://drive.google.com/file/d/1G0K_6oUwgUBJnPz1ZClN48a1gmflzK4I/view?usp=sharing
 
-##Trade Or Drop
+## Trade Or Drop
 
-##-Project Description
+## Project Description
 
 The website is a student to student game like trading web application. The web app allows students to trade or exchange random or weird items amongst themselves. 
 
 The application was developed as a PHP web application using XAMMP and MySQL
 
-##Features
+## Features
 
 - User registration
 - User login and logout
@@ -27,7 +27,7 @@ The application was developed as a PHP web application using XAMMP and MySQL
 - Accept or reject trade requests
 - Responsive design for desktop, tablet and mobile devices
 
-##Database
+## Database
 
 The application uses MySql to store:
 - User accounts
