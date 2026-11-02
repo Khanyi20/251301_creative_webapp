@@ -1,6 +1,6 @@
 :root{
 
---primary:#2E7D32;
+--primary:#82AC79;
 --secondary:#F9A826;
 --accent:#42A5F5;
 --background:#FFF8E7;
@@ -8,20 +8,20 @@
 --text:#263238;
 --success:#07D352;
 --warning:#F94316;
---dark-green: #1C4620;
+--dark-green: #486A43;
 }
 
 .form-page {
-    max-width: 800px;
+    width: min(620px, 100%);
     margin: 0 auto;
 }
 
 .item-form {
-    background: var(--primary);
-    opacity: 58%;
+    width: 100%;
+    background: #e5efdf;
     padding: 32px;
     border-radius: 16px;
-    border: 1px solid var(--text);
+    border: 1px solid rgba(72, 106, 67, 0.35);
 }
 
 .form-group {
@@ -32,7 +32,7 @@
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
-    color: var(--background);
+    color: var(--dark-green);
 }
 
 .form-group input,
@@ -44,6 +44,21 @@
     border-radius: 8px;
     background: var(--background);
     color: var(--text);
+}
+
+.form-group input[type="file"] {
+    padding: 8px;
+    border-color: rgba(72, 106, 67, 0.35);
+}
+
+.form-group input[type="file"]::file-selector-button {
+    margin-right: 12px;
+    padding: 8px 12px;
+    border: 0;
+    border-radius: 6px;
+    background: var(--primary);
+    color: var(--text);
+    cursor: pointer;
 }
 
 .form-group textarea {
@@ -60,8 +75,8 @@
 
 .item-form .button {
     width: 100%;
-    background: var(--dark-green);
-    color: var(--background);
+    background: var(--primary);
+    color: var(--text);
 }
 
 @media (max-width: 600px) {

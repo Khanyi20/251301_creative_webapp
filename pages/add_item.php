@@ -103,12 +103,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/add-item.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/deco-elements.css">
     <title>List new item</title>
 </head>
 <body>
     <?php require __DIR__ . '/../includes/header.php'; ?>
     <main>
-        <div class="form-page"></div>
+        <section class="form-page">
 
         <div class="page-heading">
             <div>
@@ -146,14 +148,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="text" id="item_condition" name="item_condition" required value="<?php echo htmlspecialchars($item_condition); ?>">
                 </div>
                 <div class="form-group">
-                    <label for="image">Upload Image</label>
-                    <input type="file" id="image" name="image" accept=".jpg,.jpeg,.png,.gif,.webp">
+                    <label for="item_image">Upload Image</label>
+                    <input type="file" id="item_image" name="item_image" accept=".jpg,.jpeg,.png,.gif,.webp">
                 </div>
                 <button type="submit" class="button button-primary">Add Item</button>
             </form>
 
-            </p><a href="home_page.php">Back to Home</a></p>
-    </div>
+        <p><a href="home_page.php">Back to Home</a></p>
+        </section>
     </main>
 </body>
 </html>

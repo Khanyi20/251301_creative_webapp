@@ -58,26 +58,61 @@ if (isset($_GET['logout'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/dashboard.css">
-     <title>user dashboard</title>
+    <link rel="stylesheet" href="../assets/css/deco-elements.css">
+
+    <title>Trade or Drop | Home</title>
    
 </head>
-<body>
+<body class="dashboard-page">
+    <?php require __DIR__ . '/../includes/deco-circles.php'; ?>
+    <header class="home-hero__header">
+        <a href="home_page.php" class="home-brand" aria-label="Trade or Drop home">
+            <img src="../assets/Frame 55 4.svg" alt="Trade or Drop logo" class="home-brand__logo">
+            <span>Trade or Drop</span>
+        </a>
 
-<?php
-    require __DIR__ . '/../includes/header.php';
-?>
+        <nav class="home-hero__nav" aria-label="Main navigation">
+            <a href="home_page.php" aria-current="page">Home</a>
+            <a href="marketplace.php">Marketplace</a>
+            <a href="add_item.php">Add Item</a>
+            <a href="trade_requests.php">Trade Requests</a>
+            <a href="logout.php" class="nav-logout">Logout</a>
+        </nav>
+    </header>
 
-    <main>
+    <section class="home-hero" aria-labelledby="home-hero-title">
+        <img
+            class="home-hero__image"
+            src="../assets/aDm5mK7VlwYKIEsilQw8-Et3BF-adjusted.jpg"
+            alt="Home hero image"
+            fetchpriority="high"
+        >
+        <div class="home-hero__shade" aria-hidden="true"></div>
+
+        <div class="home-hero__content">
+            <h1 id="home-hero-title">What is Trade or Drop?</h1>
+            <p class="home-hero__description">
+                This is a student app dedicated to creating a strong community
+                by providing a platform where students can trade items they
+                don't need. With a twist of ranking best to weirdest items,
+                you can become the lead No. 1 on the ranking stage.
+            </p>
+            <a href="marketplace.php" class="home-hero__button">Join Us</a>
+        </div>
+    </section>
+
+    <main class="dashboard-main">
 
         <section class="dashboard-header">
 
             <div>
-                <p class="dashboard-eyebrow">Student Marketplace</p>
+                <p class="dashboard-eyebrow">Your dashboard</p>
 
                 <h1>
                     Welcome back,
-                    <?php echo htmlspecialchars($user['username']); ?>!
+                    <?php echo htmlspecialchars($user['username'], ENT_QUOTES, 'UTF-8'); ?>!
                 </h1>
 
                 <p>

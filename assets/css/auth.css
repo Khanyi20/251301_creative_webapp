@@ -1,6 +1,6 @@
 :root{
 
---primary:#2E7D32;
+--primary:#82AC79;
 --secondary:#F9A826;
 --accent:#42A5F5;
 --background:#FFF8E7;
@@ -8,7 +8,7 @@
 --text:#263238;
 --success:#07D352;
 --warning:#F94316;
---dark-green: #1C4620;
+--dark-green: #486A43;
 }
 
 
@@ -29,11 +29,13 @@ body {
         }
 
         .form-box {
+            box-sizing: border-box;
             background: var(--background);
             padding: 40px;
             border-radius: 16px;
+            border: 1px solid rgba(72, 106, 67, 0.35);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            width: 400px;
+            width: min(400px, 100%);
         }
 
         .form-box h2 {
@@ -55,10 +57,9 @@ body {
         .form-group input {
             width: 100%;
             padding: 10px;
-            border: 1px solid #2E7D32;
-            background-color: #2E7D32;
-            opacity: 58%;
-            color: var(--background);
+            border: 1px solid var(--primary);
+            background-color: var(--surface_cards);
+            color: var(--text);
             border-radius: 8px;
             font-size: 14px;
             box-sizing: border-box;
@@ -71,8 +72,8 @@ body {
         .btn {
             width: 100%;
             padding: 12px;
-            background: var(--dark-green);
-            color: var(--background);
+            background: var(--primary);
+            color: var(--text);
             border: none;
             border-radius: 8px;
             font-size: 16px;
@@ -80,7 +81,7 @@ body {
         }
 
         .btn:hover {
-            background: var(--primary);
+            opacity: 0.85;
         }
 
         .error {

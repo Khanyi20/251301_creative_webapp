@@ -1,0 +1,118 @@
+body {
+    position: relative;
+    isolation: isolate;
+}
+
+.deco-circles {
+    position: fixed;
+    z-index: -1;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.deco-circles .circle {
+    position: absolute;
+    display: block;
+    width: var(--circle-size);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--circle-color);
+    opacity: 0.78;
+}
+
+.circle-1 {
+    --circle-size: 4.5rem;
+    --circle-color: #ff8b6b;
+    top: 2%;
+    left: 3%;
+}
+
+.circle-2 {
+    --circle-size: 4rem;
+    --circle-color: #ffc96f;
+    top: 8%;
+    left: 43%;
+}
+
+.circle-3 {
+    --circle-size: 5.25rem;
+    --circle-color: #82c5ed;
+    top: 13%;
+    right: 7%;
+}
+
+.circle-4 {
+    --circle-size: 6rem;
+    --circle-color: #86b27d;
+    top: 34%;
+    left: 17%;
+}
+
+.circle-5 {
+    --circle-size: 6.5rem;
+    --circle-color: #858986;
+    top: 39%;
+    right: 18%;
+}
+
+.circle-6 {
+    --circle-size: 4.5rem;
+    --circle-color: #ff8b6b;
+    top: 54%;
+    left: 68%;
+}
+
+.circle-7 {
+    --circle-size: 5rem;
+    --circle-color: #82c5ed;
+    top: 67%;
+    left: 7%;
+}
+
+.circle-8 {
+    --circle-size: 5.75rem;
+    --circle-color: #ffc96f;
+    top: 73%;
+    left: 42%;
+}
+
+.circle-9 {
+    --circle-size: 4.5rem;
+    --circle-color: #858986;
+    top: 84%;
+    right: 30%;
+}
+
+.circle-10 {
+    --circle-size: 6.5rem;
+    --circle-color: #86b27d;
+    top: 87%;
+    right: 4%;
+}
+
+@media (max-width: 600px) {
+    .deco-circles .circle {
+        opacity: 0.66;
+    }
+
+    .circle-4 {
+        left: 5%;
+    }
+
+    .circle-5 {
+        right: 4%;
+    }
+
+    .circle-6 {
+        left: 76%;
+    }
+
+    .circle-8 {
+        left: 33%;
+    }
+
+    .circle-9 {
+        right: 35%;
+    }
+}

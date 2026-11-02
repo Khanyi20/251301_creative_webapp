@@ -1,6 +1,6 @@
 :root{
 
---primary:#2E7D32;
+--primary:#82AC79;
 --secondary:#F9A826;
 --accent:#42A5F5;
 --background:#FFF8E7;
@@ -8,7 +8,7 @@
 --text:#263238;
 --success:#07D352;
 --warning:#F94316;
---dark-green: #1C4620;
+--dark-green: #486A43;
 }
 
 
@@ -23,9 +23,14 @@ html {
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 96px 0 0;
     background-color: var(--background);
     color: var(--text);
+}
+
+/* Dashboard has its own header and hero layout */
+body.dashboard-page {
+    padding: 0;
 }
 
 
@@ -50,17 +55,25 @@ main {
 /* Header area*/
 
 .site-header {
-    width: 100%;
-    background: var(--dark-green);
-    opacity: 95%;
-    color: var(--background);
-    
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    z-index: 20;
+    width: min(1200px, calc(100% - 32px));
+    transform: translateX(-50%);
+    border: 1px solid rgba(72, 106, 67, 0.18);
+    border-radius: 999px;
+    background: rgba(226, 238, 221, 0.96);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 24px rgba(38, 50, 56, 0.12);
+    color: var(--text);
 }
 
 .main-nav {
-    width: min(1200px 92%);
-    min-height: 45px;
+    width: 100%;
+    min-height: 60px;
     margin: 0 auto;
+    padding: 8px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -88,6 +101,13 @@ main {
     text-decoration: underline;
 }
 
+.nav-links a:focus-visible,
+.logo:focus-visible {
+    outline: 2px solid var(--dark-green);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
 /* Buttons area */
 
 button {
@@ -107,8 +127,12 @@ button {
 .item-card {
     overflow: hidden;
     background: var(--surface_cards);
-    bottom: 1px solid var(--dark-green);
+    border: 1px solid rgba(72, 106, 67, 0.35);
     border-radius: 12px;
+}
+
+.items-container .item-card {
+    border: 2px solid var(--primary);
 }
 
 .item-card-image {
@@ -159,7 +183,7 @@ button {
 
 .button-secondary {
     background: var(--primary);
-    color: var(--background);
+    color: var(--text);
 }
 
 .button-secondary:hover {
@@ -172,6 +196,10 @@ button {
 
 @media (max-width: 900px) {
 
+    body {
+        padding-top: 112px;
+    }
+
     .item-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -179,10 +207,12 @@ button {
     .main-nav {
         flex-direction: column;
         justify-content: center;
-        padding: 16px 0;
+        gap: 8px;
+        padding: 12px;
     }
 
     .nav-links {
+        width: 100%;
         flex-wrap: wrap;
         justify-content: center;
     }
@@ -191,6 +221,10 @@ button {
 
 /*mobile*/
 @media (max-width: 600px) {
+
+    body {
+        padding-top: 132px;
+    }
 
     main {
         width: 90%;
@@ -206,11 +240,15 @@ button {
     }
 
     .nav-links {
-        gap: 12px;
+        gap: 8px 14px;
     }
 
     .nav-links a {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+    }
+
+    .main-nav {
+        padding: 10px 12px;
     }
 }
 
@@ -239,7 +277,7 @@ button {
 
 .button-primary {
     background: var(--primary);
-    color: var(--background);
+    color: var(--text);
 }
 
 .button-primary:hover {
