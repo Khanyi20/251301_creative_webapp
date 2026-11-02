@@ -76,37 +76,7 @@ Open the XAMPP Control Panel and start Apache and MySQL.
 Go to http://localhost/phpmyadmin
 Click New and create a database named creative_app (collation utf8mb4_general_ci)
 Open the SQL tab and run the script below (also saved as database/schema.sql):
-sql
-CREATE TABLE users (
-  id         INT AUTO_INCREMENT PRIMARY KEY,
-  username   VARCHAR(50)  NOT NULL UNIQUE,
-  email      VARCHAR(100) NOT NULL UNIQUE,
-  password   VARCHAR(255) NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE items (
-  id             INT AUTO_INCREMENT PRIMARY KEY,
-  user_id        INT NOT NULL,
-  item_name      VARCHAR(100) NOT NULL,
-  description    TEXT NOT NULL,
-  category       VARCHAR(50)  NOT NULL,
-  item_condition VARCHAR(50)  NOT NULL,
-  image_path     VARCHAR(255) DEFAULT NULL,
-  status         ENUM('available','traded') NOT NULL DEFAULT 'available',
-  created_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-);
-
-CREATE TABLE trade_requests (
-  id           INT AUTO_INCREMENT PRIMARY KEY,
-  requester_id INT NOT NULL,
-  item_id      INT NOT NULL,
-  status       ENUM('pending','accepted','rejected') NOT NULL DEFAULT 'pending',
-  created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (requester_id) REFERENCES users(id) ON DELETE CASCADE,
-  FOREIGN KEY (item_id)      REFERENCES items(id) ON DELETE CASCADE
-);
+sql.
 
 4. Check the database connection
 
